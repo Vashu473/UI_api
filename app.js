@@ -16,7 +16,7 @@ app.post("/otp", async (req, res) => {
     });
     return res.send(response?.data);
   } catch (error) {
-    res.send("err");
+    res.send("err", error);
   }
 });
 app.post("/signup", async (req, res) => {
