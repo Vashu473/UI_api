@@ -2,7 +2,13 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 80;
 const axios = require("axios");
+const cors = require("cors");
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.get("/", (req, res) => {
   res.send("hello");
 });
@@ -16,7 +22,10 @@ app.post("/otp", async (req, res) => {
     });
     return res.send(response?.data);
   } catch (error) {
-    res.send("err", error);
+    res.json({
+      message: "error",
+      data: error,
+    });
   }
 });
 app.post("/signup", async (req, res) => {
