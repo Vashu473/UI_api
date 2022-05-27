@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 80;
 const axios = require("axios");
 app.use(express.json());
 app.get("/", (req, res) => {
-  res.send("hi");
+  res.send("hello");
 });
 app.post("/otp", async (req, res) => {
   const response = await axios({
@@ -13,7 +13,7 @@ app.post("/otp", async (req, res) => {
     data: req.body,
     withCredentials: true,
   });
-  return res.send(response.data);
+  return res.send(response?.data);
 });
 app.post("/signup", async (req, res) => {
   const response = await axios({
@@ -22,7 +22,7 @@ app.post("/signup", async (req, res) => {
     data: req.body,
     withCredentials: true,
   });
-  return res.send(response.data);
+  return res.send(response?.data);
 });
 app.listen(PORT, () => {
   console.log("start");
