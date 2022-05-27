@@ -7,13 +7,17 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 app.post("/otp", async (req, res) => {
-  const response = await axios({
-    method: "post",
-    url: "http://localhost:3000/api/v1/users/getotp",
-    data: req.body,
-    withCredentials: true,
-  });
-  return res.send(response?.data);
+  try {
+    const response = await axios({
+      method: "post",
+      url: "http://localhost:3000/api/v1/users/getotp",
+      data: req.body,
+      withCredentials: true,
+    });
+    return res.send(response?.data);
+  } catch (error) {
+    res.send("err");
+  }
 });
 app.post("/signup", async (req, res) => {
   const response = await axios({
